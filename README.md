@@ -1,172 +1,99 @@
-# Phase 3 CLI+ORM Project Template
+# Apartment Management System CLI
 
-## Learning Goals
+## Overview
 
-- Discuss the basic directory structure of a CLI.
-- Outline the first steps in building a CLI.
+This project is a command-line interface (CLI) tool for managing Thika Flats system. It allows users to perform CRUD (Create, Read, Update, Delete) operations on tenants, apartments, and leases. The data is stored in a SQLite database.
 
----
+## Features
 
-## Introduction
+- **Tenant Management**
+  - List all tenants
+  - Find tenant by name
+  - Find tenant by ID
+  - Create a new tenant
+  - Update an existing tenant
+  - Delete a tenant
 
-You now have a basic idea of what constitutes a CLI. Fork and clone this lesson
-for a project template for your CLI.
+- **Apartment Management**
+  - List all apartments
+  - Find apartment by address
+  - Find apartment by ID
+  - Create a new apartment
+  - Update an existing apartment
+  - Delete an apartment
 
-Take a look at the directory structure:
+- **Lease Management**
+  - List all leases
+  - Find lease by ID
+  - Create a new lease
+  - Update an existing lease
+  - Delete a lease
 
-```console
-.
-├── Pipfile
-├── Pipfile.lock
-├── README.md
-└── lib
-    ├── models
-    │   ├── __init__.py
-    │   └── model_1.py
-    ├── cli.py
-    ├── debug.py
-    └── helpers.py
-```
+## Requirements
 
-Note: The directory also includes two files named `CONTRIBUTING.md` and
-`LICENSE.md` that are specific to Flatiron's curriculum. You can disregard or
-delete the files if you want.
+- Python 3.x
+- SQLite3
 
----
+## Setup
 
-## Generating Your Environment
+1. **Clone the repository:**
 
-You might have noticed in the file structure- there's already a Pipfile!
+    ```sh
+    git clone https://github.com/john7319/python-p3-v2-final-project-template
+    cd apartment-management-system-cli
+    ```
 
-Install any additional dependencies you know you'll need for your project by
-adding them to the `Pipfile`. Then run the commands:
+2. **Install dependencies:**
 
-```console
-pipenv install
-pipenv shell
-```
+    pipenv --python <python_source_path>
 
----
+3. **Set up the database:**
+    Run the CLI and it will be automatically implemented
+    
 
-## Generating Your CLI
+## Usage
 
-A CLI is, simply put, an interactive script and prompts the user and performs
-operations based on user input.
+1. **Run the CLI:**
 
-The project template has a sample CLI in `lib/cli.py` that looks like this:
+    ```sh
+    python main.py
+    ```
 
-```py
-# lib/cli.py
+2. **Main Menu:**
 
-from helpers import (
-    exit_program,
-    helper_1
-)
+    The main menu will be displayed with options to manage tenants, apartments, and leases.
 
+    ```
+    Welcome to Thika Flats Management System(TFMS)
+    1. List Tenants
+    2. Find Tenant by Name
+    3. Find Tenant by ID
+    4. Create Tenant
+    5. Update Tenant
+    6. Delete Tenant
+    7. List Apartments
+    8. Find Apartment by Address
+    9. Find Apartment by ID
+    10. Create Apartment
+    11. Update Apartment
+    12. Delete Apartment
+    13. List Leases
+    14. Find Lease by ID
+    15. Create Lease
+    16. Update Lease
+    17. Delete Lease
+    0. Exit
+    ```
 
-def main():
-    while True:
-        menu()
-        choice = input("> ")
-        if choice == "0":
-            exit_program()
-        elif choice == "1":
-            helper_1()
-        else:
-            print("Invalid choice")
+3. **Choose an Option:**
 
+    Enter the number corresponding to the desired operation and follow the prompts to perform the operation.
 
-def menu():
-    print("Please select an option:")
-    print("0. Exit the program")
-    print("1. Some useful function")
+## Project Structure
 
-
-if __name__ == "__main__":
-    main()
-```
-
-The helper functions are located in `lib/helpers.py`:
-
-```py
-# lib/helpers.py
-
-def helper_1():
-    print("Performing useful function#1.")
-
-
-def exit_program():
-    print("Goodbye!")
-    exit()
-```
-
-You can run the template CLI with `python lib/cli.py`, or include the shebang
-and make it executable with `chmod +x`. The template CLI will ask for input, do
-some work, and accomplish some sort of task.
-
-Past that, CLIs can be whatever you'd like, as long as you follow the project
-requirements.
-
-Of course, you will update `lib/cli.py` with prompts that are appropriate for
-your application, and you will update `lib/helpers.py` to replace `helper_1()`
-with a useful function based on the specific problem domain you decide to
-implement, along with adding other helper functions to the module.
-
-In the `lib/models` folder, you should rename `model_1.py` with the name of a
-data model class from your specific problem domain, and add other classes to the
-folder as needed. The file `lib/models/__init__.py` has been initialized to
-create the necessary database constants. You need to add import statements to
-the various data model classes in order to use the database constants.
-
-You are also welcome to implement a different module and directory structure.
-However, your project should be well organized, modular, and follow the design
-principal of separation of concerns, which means you should separate code
-related to:
-
-- User interface
-- Data persistence
-- Problem domain rules and logic
-
----
-
-## Updating README.md
-
-`README.md` is a Markdown file that should describe your project. You will
-replace the contents of this `README.md` file with a description of **your**
-actual project.
-
-Markdown is not a language that we cover in Flatiron's Software Engineering
-curriculum, but it's not a particularly difficult language to learn (if you've
-ever left a comment on Reddit, you might already know the basics). Refer to the
-cheat sheet in this assignments's resources for a basic guide to Markdown.
-
-### What Goes into a README?
-
-This README serves as a template. Replace the contents of this file to describe
-the important files in your project and describe what they do. Each Python file
-that you edit should get at least a paragraph, and each function should be
-described with a sentence or two.
-
-Describe your actual CLI script first, and with a good level of detail. The rest
-should be ordered by importance to the user. (Probably functions next, then
-models.)
-
-Screenshots and links to resources that you used throughout are also useful to
-users and collaborators, but a little more syntactically complicated. Only add
-these in if you're feeling comfortable with Markdown.
-
----
-
-## Conclusion
-
-A lot of work goes into a good CLI, but it all relies on concepts that you've
-practiced quite a bit by now. Hopefully this template and guide will get you off
-to a good start with your Phase 3 Project.
-
-Happy coding!
-
----
-
-## Resources
-
-- [Markdown Cheat Sheet](https://www.markdownguide.org/cheat-sheet/)
+- `models/`
+  - `tenant.py`: Tenant model
+  - `apartment.py`: Apartment model
+  - `lease.py`: Lease model
+-`cli.py`: Comand line interface
+-`helpers.py`: Connection code
