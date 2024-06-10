@@ -56,7 +56,7 @@ This project is a command-line interface (CLI) tool for managing Thika Flats sys
 1. **Run the CLI:**
 
     ```sh
-    python main.py
+    python cli.py
     ```
 
 2. **Main Menu:**
