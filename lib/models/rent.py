@@ -128,18 +128,20 @@ class Lease():
     @classmethod
     def get_all(cls):
         sql = """
-            SELECT *
+            SELECT leases.id, tenants.name, apartments.address, leases.start_date, leases.end_date
             FROM leases
+            JOIN tenants ON leases.tenant_id = tenants.id
+            JOIN apartments ON leases.apartment_id = apartments.id
         """
         rows = CURSOR.execute(sql).fetchall()
-        return [cls.instance_from_db(row) for row in rows]
+        return rows
 
     @classmethod
     def find_by_id(cls, id):
         sql = """
-            SELECT *
+            SELECT leases.id, leases.tenant_id, leases.apartment_id, leases.start_date, leases.end_date
             FROM leases
-            WHERE id = ?
+            WHERE leases.id = ?
         """
         row = CURSOR.execute(sql, (id,)).fetchone()
         return cls.instance_from_db(row) if row else None
@@ -147,9 +149,9 @@ class Lease():
     @classmethod
     def find_by_tenant_id(cls, tenant_id):
         sql = """
-            SELECT *
+            SELECT leases.id, leases.tenant_id, leases.apartment_id, leases.start_date, leases.end_date
             FROM leases
-            WHERE tenant_id = ?
+            WHERE leases.tenant_id = ?
         """
         rows = CURSOR.execute(sql, (tenant_id,)).fetchall()
         return [cls.instance_from_db(row) for row in rows]
@@ -157,9 +159,9 @@ class Lease():
     @classmethod
     def find_by_apartment_id(cls, apartment_id):
         sql = """
-            SELECT *
+            SELECT leases.id, leases.tenant_id, leases.apartment_id, leases.start_date, leases.end_date
             FROM leases
-            WHERE apartment_id = ?
+            WHERE leases.apartment_id = ?
         """
         rows = CURSOR.execute(sql, (apartment_id,)).fetchall()
         return [cls.instance_from_db(row) for row in rows]

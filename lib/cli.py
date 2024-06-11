@@ -1,5 +1,7 @@
 # lib/cli.py
 
+from colorama import init, Fore, Style
+
 from helpers import (
     exit_program,
     list_tenants,
@@ -16,6 +18,8 @@ from helpers import (
     update_apartment,
     list_leases,
     find_lease_by_id,
+    find_leases_by_apartment_id,
+    find_leases_by_tenant_id,
     create_lease,
     update_lease,
     delete_lease
@@ -23,6 +27,8 @@ from helpers import (
 
 
 def main():
+    user_name = input(Fore.GREEN+ "Please input your name to continue \n")
+    print(f"Welcome, {user_name} to Thika Flats Management System(TFMS) \nLooking forward to making your life easier" + Style.RESET_ALL)
     while True:
         menu()
         choice = input("> ")
@@ -57,17 +63,21 @@ def main():
         elif choice == '14':
             find_lease_by_id()
         elif choice == '15':
-            create_lease()
+            find_leases_by_apartment_id()
         elif choice == '16':
-            update_lease()
+            find_leases_by_tenant_id()
         elif choice == '17':
+            create_lease()
+        elif choice == '18':
+            update_lease()
+        elif choice == '19':
             delete_lease()
         else:
             print("Invalid choice. Please try again.")
 
 
 def menu():
-    print("\nWelcome to Thika Flats Management System(TFMS)")
+    print(Fore.CYAN +"\nThika Flats Management System(TFMS)")
     print("1. List Tenants")
     print("2. Find Tenant by Name")
     print("3. Find Tenant by ID")
@@ -82,10 +92,12 @@ def menu():
     print("12. Delete Apartment")
     print("13. List Leases")
     print("14. Find Lease by ID")
-    print("15. Create Lease")
-    print("16. Update Lease")
-    print("17. Delete Lease")
-    print("0. Exit")
+    print("15. Find leases by apartment id")
+    print("16. Find leases by tenant id")
+    print("17. Create Lease")
+    print("18. Update Lease")
+    print("19. Delete Lease")
+    print("0. Exit" + Style.RESET_ALL )
 
 
 if __name__ == "__main__":

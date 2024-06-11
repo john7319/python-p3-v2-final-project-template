@@ -78,7 +78,7 @@ class Apartment():
         type(self).all[self.id] = self
 
     @classmethod
-    def create(cls, address, rent, availability=True):
+    def create(cls, address, rent, availability):
         apartment = cls(address, rent, availability)
         apartment.save()
         return apartment
@@ -108,9 +108,9 @@ class Apartment():
         if apartment:
             apartment.address = row[1]
             apartment.rent = row[2]
-            apartment.availability = row[3]
+            apartment.availability = bool(row[3])
         else:
-            apartment = cls(row[1], row[2], row[3])
+            apartment = cls(row[1], row[2], bool(row[3]))
             apartment.id = row[0]
             cls.all[apartment.id] = apartment
         return apartment
