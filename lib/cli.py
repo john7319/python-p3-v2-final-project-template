@@ -1,6 +1,6 @@
 # lib/cli.py
 
-from colorama import init, Fore, Style
+from colorama import Fore, Style
 
 from helpers import (
     exit_program,
@@ -28,7 +28,7 @@ from helpers import (
 
 def main():
     user_name = input(Fore.GREEN+ "Please input your name to continue \n")
-    print(f"Welcome, {user_name} to Thika Flats Management System(TFMS) \nLooking forward to making your life easier" + Style.RESET_ALL)
+    print(f"Welcome, {user_name} to Thika Flats Management System(TFMS) \nLooking forward to making your life easier. \nYou can call this the best AirBnB in town!" + Style.RESET_ALL)
     while True:
         menu()
         choice = input("> ")

@@ -1,10 +1,9 @@
 # lib/helpers.py
-from colorama import init, Fore, Style, Back
+from colorama import Fore, Style, Back
 from models.house import Apartment
 from models.rent import Lease
 from models.tenant import Tenant
 
-init()
 
 def list_tenants():
     tenants = Tenant.get_all()
@@ -65,7 +64,7 @@ def list_apartments():
     print(Back.BLACK+ Fore.BLUE + Style.BRIGHT +"Listing apartments..." +Style.RESET_ALL)
     apartments = Apartment.get_all()
     for apartment in apartments:
-        print(Fore.YELLOW + f'{apartment}')
+        print(Fore.YELLOW + f'Apartment address: {apartment.address}, Rent: {apartment.rent}, Is Occupied: {apartment.availability}')
 
 def find_apartment_by_address():
     print(Back.BLACK+ Fore.BLUE + Style.BRIGHT +"Finding apartment by address..." +Style.RESET_ALL)
