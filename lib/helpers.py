@@ -32,7 +32,7 @@ def create_tenant():
         tenant = Tenant.create(name, contact_info)
         print(Fore.YELLOW + f'Success: {tenant}'+ Style.RESET_ALL)
     except Exception as exc:
-        print(Fore.YELLOW + "Error creating tenant: ", exc + Style.RESET_ALL)
+        print(Fore.RED + "Error creating tenant: ", exc + Style.RESET_ALL)
 
 def update_tenant():
     print(Back.BLACK+ Fore.BLUE + Style.BRIGHT +"Updating a tenant..." +Style.RESET_ALL)
@@ -46,18 +46,18 @@ def update_tenant():
             tenant.update()
             print(Fore.YELLOW + f'Success: {tenant}' + Style.RESET_ALL)
         except Exception as exc:
-            print(Fore.YELLOW + "Error updating tenant: ", exc + Style.RESET_ALL)
+            print(Fore.RED + "Error updating tenant: ", exc + Style.RESET_ALL)
     else:
-        print(Fore.YELLOW + f'Tenant {id_} not found' + Style.RESET_ALL)
+        print(Fore.RED + f'Tenant {id_} not found' + Style.RESET_ALL)
 
 def delete_tenant():
     print(Back.BLACK+ Fore.RED + Style.BRIGHT +"Deleting a tenant..." +Style.RESET_ALL)
     id_ = input(Back.BLACK+ Fore.WHITE + Style.BRIGHT +"Enter the tenant's id: " +Style.RESET_ALL)
     if tenant := Tenant.find_by_id(id_):
         tenant.delete()
-        print(Fore.YELLOW + f'Tenant {id_} deleted'+ Style.RESET_ALL)
+        print(Fore.RED + f'Tenant {id_} deleted'+ Style.RESET_ALL)
     else:
-        print(Fore.YELLOW + f'Tenant {id_} not found'+ Style.RESET_ALL)
+        print(Fore.RED + f'Tenant {id_} not found'+ Style.RESET_ALL)
 
 # Apartment CLI functions
 def list_apartments():
@@ -88,7 +88,7 @@ def create_apartment():
         apartment = Apartment.create(address, rent, availability1)
         print(Fore.YELLOW + f'Success: {apartment}' + Style.RESET_ALL)
     except Exception as exc:
-        print(Fore.YELLOW + "Error creating apartment: ", exc + Style.RESET_ALL)
+        print(Fore.RED + "Error creating apartment: ", exc + Style.RESET_ALL)
 
 def update_apartment():
     print(Back.BLACK+ Fore.BLUE + Style.BRIGHT +"Updating apartment..." +Style.RESET_ALL)
@@ -107,18 +107,18 @@ def update_apartment():
             apartment.update()
             print(Fore.YELLOW + f'Success: {apartment}' + Style.RESET_ALL)
         except Exception as exc:
-            print(Fore.YELLOW + "Error updating apartment: ", f'{exc}' + Style.RESET_ALL)
+            print(Fore.RED + "Error updating apartment: ", f'{exc}' + Style.RESET_ALL)
     else:
-        print(Fore.YELLOW + f'Apartment {id_} not found' + Style.RESET_ALL)
+        print(Fore.RED + f'Apartment {id_} not found' + Style.RESET_ALL)
 
 def delete_apartment():
     print(Back.BLACK+ Fore.RED + Style.BRIGHT +"Deleting apartment..." +Style.RESET_ALL)
     id_ = input(Back.BLACK+ Fore.WHITE + Style.BRIGHT +"Enter the apartment's id: " +Style.RESET_ALL)
     if apartment := Apartment.find_by_id(id_):
         apartment.delete()
-        print(Fore.YELLOW + f'Apartment {id_} deleted' + Style.RESET_ALL)
+        print(Fore.RED + f'Apartment {id_} deleted' + Style.RESET_ALL)
     else:
-        print(Fore.YELLOW + f'Apartment {id_} not found' + Style.RESET_ALL)
+        print(Fore.RED + f'Apartment {id_} not found' + Style.RESET_ALL)
 
 # Lease CLI functions
 def list_leases():
@@ -129,36 +129,36 @@ def list_leases():
 
 def find_lease_by_id():
     print(Back.BLACK+ Fore.BLUE + Style.BRIGHT +"Finding a lease by Id..." +Style.RESET_ALL)
-    tenant_id = input("Enter the tenant's id: ")
+    tenant_id = input(Back.BLACK+ Fore.WHITE + Style.BRIGHT +"Enter the tenant's id: " +Style.RESET_ALL)
     leases = Lease.find_by_tenant_id(tenant_id)
     if leases:
         for lease in leases:
             apartment = Apartment.find_by_id(lease.apartment_id)
-            print(f"Lease ID: {lease.id}, Tenant: {lease.tenant_id}, Apartment: {apartment.address}, Start Date: {lease.start_date}, End Date: {lease.end_date}")
+            print(Fore.YELLOW + f"Lease ID: {lease.id}, Tenant: {lease.tenant_id}, Apartment: {apartment.address}, Start Date: {lease.start_date}, End Date: {lease.end_date}" +Style.RESET_ALL)
     else:
-        print(f'No leases found for tenant {tenant_id}')
+        print(Fore.RED +  f'No leases found for tenant {tenant_id}' +Style.RESET_ALL)
     
 def find_leases_by_tenant_id():
     print(Back.BLACK+ Fore.BLUE + Style.BRIGHT +"Finding a lease by tenant Id..." +Style.RESET_ALL)
-    tenant_id = input("Enter the tenant's id: ")
+    tenant_id = input(Back.BLACK+ Fore.WHITE + Style.BRIGHT +"Enter the tenant's id: " +Style.RESET_ALL)
     leases = Lease.find_by_tenant_id(tenant_id)
     if leases:
         for lease in leases:
             apartment = Apartment.find_by_id(lease.apartment_id)
-            print(f"Lease ID: {lease.id}, Tenant: {lease.tenant_id}, Apartment: {apartment.address}, Start Date: {lease.start_date}, End Date: {lease.end_date}")
+            print(Fore.YELLOW + f"Lease ID: {lease.id}, Tenant: {lease.tenant_id}, Apartment: {apartment.address}, Start Date: {lease.start_date}, End Date: {lease.end_date}" +Style.RESET_ALL)
     else:
-        print(f'No leases found for tenant {tenant_id}')
+        print(Fore.RED + f'No leases found for tenant {tenant_id}' +Style.RESET_ALL)
         
 def find_leases_by_apartment_id():
     print(Back.BLACK+ Fore.BLUE + Style.BRIGHT +"Finding a lease apartment Id..." +Style.RESET_ALL)
-    apartment_id = input("Enter the apartment's id: ")
+    apartment_id = input(Back.BLACK+ Fore.WHITE + Style.BRIGHT + "Enter the apartment's id: " +Style.RESET_ALL)
     leases = Lease.find_by_apartment_id(apartment_id)
     if leases:
         for lease in leases:
             tenant = Tenant.find_by_id(lease.tenant_id)
-            print(f"Lease ID: {lease.id}, Tenant: {tenant.name}, Apartment: {lease.apartment_id}, Start Date: {lease.start_date}, End Date: {lease.end_date}")
+            print(Fore.YELLOW + f"Lease ID: {lease.id}, Tenant: {tenant.name}, Apartment: {lease.apartment_id}, Start Date: {lease.start_date}, End Date: {lease.end_date}" +Style.RESET_ALL)
     else:
-        print(f'No leases found for apartment {apartment_id}')
+        print(Fore.RED + f'No leases found for apartment {apartment_id}' +Style.RESET_ALL)
 
 def create_lease():
     print(Back.BLACK+ Fore.BLUE + Style.BRIGHT +"Creating a new Lease..." +Style.RESET_ALL)
@@ -174,7 +174,7 @@ def create_lease():
 
 def update_lease():
     print(Back.BLACK+ Fore.BLUE + Style.BRIGHT +"Updating a Lease..." +Style.RESET_ALL)
-    id_ = input("Enter the lease's id: ")
+    id_ = input(Back.BLACK+ Fore.WHITE + Style.BRIGHT + "Enter the lease's id: ")
     if lease := Lease.find_by_id(id_):
         try:
             tenant_id = input("Enter the tenant's id: ")
@@ -183,12 +183,12 @@ def update_lease():
             lease.apartment_id = apartment_id
             start_date = input("Enter the lease start date (YYYY-MM-DD): ")
             lease.start_date = start_date
-            end_date = input("Enter the lease end date (YYYY-MM-DD): ")
+            end_date = input("Enter the lease end date (YYYY-MM-DD): " +Style.RESET_ALL)
             lease.end_date = end_date
             lease.update()
-            print(f'Success: {lease}')
+            print(Fore.YELLOW + f'Success: {lease}' + Style.RESET_ALL)
         except Exception as exc:
-            print("Error updating lease: ", exc)
+            print(Fore.YELLOW + "Error updating lease: ", f'{exc}' + Style.RESET_ALL)
     else:
         print(f'Lease {id_} not found')
 def delete_lease():
@@ -200,5 +200,5 @@ def delete_lease():
     else:
         print(Fore.YELLOW + f'Lease {id_} not found' + Style.RESET_ALL)
 def exit_program():
-    print(Fore.RED +"Good Bye, I hope I served you as you wished. \nLooking forward to working with you again")
+    print(Fore.RED +"Good Bye, I hope I served you as you wished. \nLooking forward to working with you again" +Style.RESET_ALL)
     exit()

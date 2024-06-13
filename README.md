@@ -7,6 +7,7 @@ This project is a command-line interface (CLI) tool for managing Thika Flats sys
 ## Features
 
 - **Tenant Management**
+  - **You will be abe to:**
   - List all tenants
   - Find tenant by name
   - Find tenant by ID
@@ -15,6 +16,7 @@ This project is a command-line interface (CLI) tool for managing Thika Flats sys
   - Delete a tenant
 
 - **Apartment Management**
+  - **You will be abe to:**
   - List all apartments
   - Find apartment by address
   - Find apartment by ID
@@ -23,6 +25,7 @@ This project is a command-line interface (CLI) tool for managing Thika Flats sys
   - Delete an apartment
 
 - **Lease Management**
+  - **You will be abe to:**
   - List all leases
   - Find lease by ID
   - Create a new lease
@@ -81,9 +84,11 @@ This project is a command-line interface (CLI) tool for managing Thika Flats sys
     12. Delete Apartment
     13. List Leases
     14. Find Lease by ID
-    15. Create Lease
-    16. Update Lease
-    17. Delete Lease
+    15. Find leases by apartment id
+    16. Find leases by tenant id
+    17. Create Lease
+    18. Update Lease
+    19. Delete Lease
     0. Exit
     ```
 
