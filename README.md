@@ -40,12 +40,14 @@ This project is a command-line interface (CLI) tool for managing Thika Flats sys
 
     ```sh
     git clone https://github.com/john7319/python-p3-v2-final-project-template
-    cd apartment-management-system-cli
+    cd python-p3-v2-final-project-template/lib
     ```
 
 2. **Install dependencies:**
 
     pipenv --python <python_source_path>
+    pipenv install
+    pipenv shell(to enter the environment)
 
 3. **Set up the database:**
     Run the CLI and it will be automatically implemented
@@ -93,7 +95,9 @@ This project is a command-line interface (CLI) tool for managing Thika Flats sys
 
 - `models/`
   - `tenant.py`: Tenant model
-  - `apartment.py`: Apartment model
-  - `lease.py`: Lease model
+  - `house.py`: Apartment model
+  - `rent.py`: Lease model
+-apartment.db: Sql database
+-debug.py: To debug any errors
 -`cli.py`: Comand line interface
 -`helpers.py`: Connection code
